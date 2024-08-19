@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BibleVersesDatashow.MainPage"
+             xmlns:viewmodel="clr-namespace:BibleVersesDatashow.ViewModel"
+             x:DataType="viewmodel:MainViewModel">
+    <ContentPage.Resources>
+        <Style 
+            x:Key="FontPreview"
+            TargetType="Label">
+            <Setter Property="FontSize" Value="{Binding FontSize}"/>
+            <Setter Property="TextTransform" Value="Uppercase"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Image Source="verse_bg.jpg" 
+               Aspect="AspectFill" 
+               VerticalOptions="FillAndExpand" 
+               HorizontalOptions="FillAndExpand"
+               Opacity="0.5"
+               BackgroundColor="#0f0f0f"/>
+        <BoxView Color="Black" 
+                 Opacity="0.5" 
+                 VerticalOptions="FillAndExpand" 
+                 HorizontalOptions="FillAndExpand" />
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Image
+                Source="dotnet_bot.png"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a race car number eight" />
+
+            <Label
+                Text="Hello, World!"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Entry 
+                Placeholder="Font size"
+                Text="{Binding FontSize}"/>
+
+            <Button
+                x:Name="SaveStyle"
+                Text="Save"
+                Command="{Binding SaveStyleCommand}"
+                />
+
+            <Label
+                Text="Font Preview"
+                Style="{StaticResource FontPreview}"/>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
