@@ -32,14 +32,20 @@ namespace BibleVersesDatashow.ViewModel
         string nameToSearch;
         [ObservableProperty]
         BibleBook currentBook;
+        //TODO: Show pop up that book was not found
+        [ObservableProperty]
+        string? popUpErrorMessage;
 
         [RelayCommand]
-        public async void GetBook()
+        public async Task GetBook()
         {
             if (String.IsNullOrEmpty(AbbrevToSearch) && String.IsNullOrEmpty(NameToSearch))
             {
-                throw new ArgumentNullException("Informe o nome ou abreviação do livro que queira obter");
+                PopUpErrorMessage = "Informe o nome ou abreviação do livro que queira obter";
+                return;
             }
+
+            bool notFound = true;
 
             using (Stream fileStream = await Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync("Resources/Bible/nvi.json"))
             {
@@ -56,12 +62,8 @@ namespace BibleVersesDatashow.ViewModel
                                 string jsonElementName = nameProperty.ToString();
                                 if (jsonElementName == NameToSearch)
                                 {
-                                    BibleBook? book = JsonSerializer.Deserialize<BibleBook>(jsonElement);
-
-                                    if (book != null)
-                                    {
-                                        CurrentBook = book;
-                                    }
+                                    notFound = UpdateCurrentBook(jsonElement);
+                                    break;
                                 }
                             }
                             else if (jsonElement.TryGetProperty("abbrev", out JsonElement abbrevProperty))
@@ -69,24 +71,35 @@ namespace BibleVersesDatashow.ViewModel
                                 string jsonElementAbbrev = abbrevProperty.ToString();
                                 if (jsonElementAbbrev == AbbrevToSearch)
                                 {
-                                    BibleBook? book = JsonSerializer.Deserialize<BibleBook>
-                                        (
-                                            jsonElement.ToString(), 
-                                            new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
-                                        );
-
-                                    if (book != null)
-                                    {
-                                        CurrentBook = book;
-                                    }
+                                    notFound = UpdateCurrentBook(jsonElement);
+                                    break;
                                 }
                             }
                         }
                     }
                 }
             }
+            if (notFound)
+            {
+                PopUpErrorMessage = "Livro não encontrado";
+            }
+        }
 
-            throw new Exception("Livro não encontrado");
+        private bool UpdateCurrentBook(JsonElement newBook)
+        {
+            BibleBook? book = JsonSerializer.Deserialize<BibleBook>
+                                (
+                                    newBook.ToString(),
+                                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+                                );
+
+            if (book != null)
+            {
+                CurrentBook = book;
+                return true;
+            }
+
+            return false;
         }
     }
 }

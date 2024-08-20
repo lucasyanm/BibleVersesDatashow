@@ -10,7 +10,7 @@ namespace BibleVersesDatashow.Model
     public class BibleBook
     {
         public required string abbrev { get; set; }
-        public required List<string> chapters { get; set; }
+        public required List<List<string>> chapters { get; set; }
         public required string name { get; set; }
     }
 }
