@@ -72,6 +72,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Converter\ChaptersVerseFromBook.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Slideshow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

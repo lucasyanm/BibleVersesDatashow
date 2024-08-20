@@ -140,7 +140,7 @@ namespace BibleVersesDatashow.ViewModel
 
         private void OpenSlideshow()
         {
-            if(Application.Current?.Windows.FirstOrDefault(w => w.Page.GetType() == typeof(Slideshow)) == null)
+            if(Application.Current?.Windows.FirstOrDefault(w => w.Page?.GetType() == typeof(Slideshow)) == null)
             {
                 Window slideshowWindow = new Window(new Slideshow(this));
                 Application.Current?.OpenWindow(slideshowWindow);

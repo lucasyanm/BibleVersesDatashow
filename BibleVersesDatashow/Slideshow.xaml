@@ -4,7 +4,13 @@
              x:Class="BibleVersesDatashow.Slideshow"
              Title="Slideshow"
              xmlns:viewmodel="clr-namespace:BibleVersesDatashow.ViewModel"
-             x:DataType="viewmodel:MainViewModel">
+             x:DataType="viewmodel:MainViewModel"
+             xmlns:converter="clr-namespace:BibleVersesDatashow.Resources.Converter">
+
+    <ContentPage.Resources>
+        <converter:ChaptersVerseFromBook x:Key="ChaptersVerseFromBook"/>
+    </ContentPage.Resources>
+    
     <Grid>
         <Image Source="verse_bg.jpg" 
            Aspect="AspectFill" 
@@ -36,6 +42,16 @@
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" 
                 FontSize="40"/>
+
+            <Label>
+                <Label.Text>
+                    <MultiBinding Converter="{converter:ChaptersVerseFromBook}">
+                        <Binding Path="CurrentBook.chapters" />
+                        <Binding Path="ChapterToStart" />
+                        <Binding Path="VerseToStart" />
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
 
         </VerticalStackLayout>
     </Grid>
