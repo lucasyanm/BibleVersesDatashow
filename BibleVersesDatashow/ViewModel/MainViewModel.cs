@@ -33,6 +33,9 @@ namespace BibleVersesDatashow.ViewModel
         BibleBook currentBook;
         [ObservableProperty]
         int? verseToStart;
+        //TODO: only update on slideshow page after click on search
+        [ObservableProperty]
+        int chapterToStart;
         //TODO: Show pop up that book was not found
         [ObservableProperty]
         string? popUpErrorMessage;
@@ -47,6 +50,18 @@ namespace BibleVersesDatashow.ViewModel
             }
 
             bool bookFound = false;
+
+            string[] searchSplitted = AbbrevOrNameToSearch.Split(" ");
+            string abbrevOrName = searchSplitted[0];
+            if(searchSplitted.Length > 1 
+                && int.TryParse(searchSplitted[1], out int chapter))
+            {
+                ChapterToStart = chapter;
+            }
+            else
+            {
+                ChapterToStart = 1;
+            }
 
             using (Stream fileStream = await Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync("Resources/Bible/nvi.json"))
             {
@@ -63,7 +78,7 @@ namespace BibleVersesDatashow.ViewModel
                                 if (String.Compare
                                         (
                                             jsonElementAbbrev,
-                                            AbbrevOrNameToSearch,
+                                            abbrevOrName,
                                             CultureInfo.CurrentCulture,
                                             CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase
                                         ) == 0)
@@ -76,8 +91,8 @@ namespace BibleVersesDatashow.ViewModel
                                     string jsonElementName = nameProperty.ToString();
                                     if(String.Compare
                                         (
-                                            jsonElementName, 
-                                            AbbrevOrNameToSearch, 
+                                            jsonElementName,
+                                            abbrevOrName, 
                                             CultureInfo.CurrentCulture, 
                                             CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase
                                         ) == 0)
@@ -92,7 +107,12 @@ namespace BibleVersesDatashow.ViewModel
                     }
                 }
             }
-            if (!bookFound)
+            if (bookFound)
+            {
+                ChapterToStart = ChapterToStart > 0 && ChapterToStart <= CurrentBook.chapters.Count ? ChapterToStart : 1;
+                VerseToStart = VerseToStart > 0 && VerseToStart <= CurrentBook.chapters[ChapterToStart].Count ? VerseToStart : 1;
+            }
+            else
             {
                 PopUpErrorMessage = "Livro não encontrado";
                 return;
@@ -120,8 +140,11 @@ namespace BibleVersesDatashow.ViewModel
 
         private void OpenSlideshow()
         {
-            Window slideshowWindow = new Window(new Slideshow());
-            Application.Current?.OpenWindow(slideshowWindow);
+            if(Application.Current?.Windows.FirstOrDefault(w => w.Page.GetType() == typeof(Slideshow)) == null)
+            {
+                Window slideshowWindow = new Window(new Slideshow(this));
+                Application.Current?.OpenWindow(slideshowWindow);
+            }            
         }
     }
 }

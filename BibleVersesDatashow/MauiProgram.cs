@@ -18,6 +18,7 @@ namespace BibleVersesDatashow
 
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddSingleton<Slideshow>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

@@ -1,9 +1,13 @@
-namespace BibleVersesDatashow;
+using BibleVersesDatashow.ViewModel;
 
-public partial class Slideshow : ContentPage
+namespace BibleVersesDatashow
 {
-	public Slideshow()
-	{
-		InitializeComponent();
-	}
+    public partial class Slideshow : ContentPage
+    {
+        public Slideshow(MainViewModel vm)
+        {
+            InitializeComponent();
+            BindingContext = vm;
+        }
+    }
 }

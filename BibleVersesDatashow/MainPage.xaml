@@ -13,57 +13,37 @@
         </Style>
     </ContentPage.Resources>
 
-    <Grid>
-        <Image Source="verse_bg.jpg" 
-               Aspect="AspectFill" 
-               VerticalOptions="FillAndExpand" 
-               HorizontalOptions="FillAndExpand"
-               Opacity="0.5"
-               BackgroundColor="#0f0f0f"/>
-        <BoxView Color="Black" 
-                 Opacity="0.5" 
-                 VerticalOptions="FillAndExpand" 
-                 HorizontalOptions="FillAndExpand" />
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+    <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
 
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
+        <Entry 
+            Placeholder="Font size"
+            Text="{Binding FontSize}"/>
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+        <Button
+            x:Name="SaveStyle"
+            Text="Save"
+            Command="{Binding SaveStyleCommand}"/>
 
-            <Entry 
-                Placeholder="Font size"
-                Text="{Binding FontSize}"/>
+        <Label
+            Text="Font Preview"
+            Style="{StaticResource FontPreview}"/>
 
-            <Button
-                x:Name="SaveStyle"
-                Text="Save"
-                Command="{Binding SaveStyleCommand}"
-                />
+        <Label
+            Text="{Binding CurrentBook.name}"
+            Style="{StaticResource FontPreview}"/>
 
-            <Label
-                Text="Font Preview"
-                Style="{StaticResource FontPreview}"/>
-
-            <Entry
-                Placeholder="Digite o nome ou apelido do capítulo"
-                Text="{Binding AbbrevOrNameToSearch}"/>
-            <Entry
-                Placeholder="Versículo"
-                Text="{Binding VerseToStart}"/>
-            <Button
-                x:Name="GetBookTest"
-                Text="Buscar"
-                Command="{Binding GetBookCommand}"
-                />
-        </VerticalStackLayout>
-    </Grid>
+        <Entry
+            Placeholder="Digite o nome ou apelido do livro"
+            Text="{Binding AbbrevOrNameToSearch}"/>
+        <Entry
+            Placeholder="Versículo"
+            Text="{Binding VerseToStart}"/>
+        <Button
+            x:Name="GetBookTest"
+            Text="Buscar"
+            Command="{Binding GetBookCommand}"/>
+        
+    </VerticalStackLayout>
 </ContentPage>
