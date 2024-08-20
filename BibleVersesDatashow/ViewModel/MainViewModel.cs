@@ -95,7 +95,10 @@ namespace BibleVersesDatashow.ViewModel
             if (!bookFound)
             {
                 PopUpErrorMessage = "Livro não encontrado";
+                return;
             }
+
+            OpenSlideshow();
         }
 
         private bool UpdateCurrentBook(JsonElement newBook)
@@ -113,6 +116,12 @@ namespace BibleVersesDatashow.ViewModel
             }
 
             return false;
+        }
+
+        private void OpenSlideshow()
+        {
+            Window slideshowWindow = new Window(new Slideshow());
+            Application.Current?.OpenWindow(slideshowWindow);
         }
     }
 }
