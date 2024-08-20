@@ -54,11 +54,11 @@
                 Style="{StaticResource FontPreview}"/>
 
             <Entry
-                Placeholder="Digite o apelido do livro"
-                Text="{Binding AbbrevToSearch}"/>
+                Placeholder="Digite o nome ou apelido do capítulo"
+                Text="{Binding AbbrevOrNameToSearch}"/>
             <Button
                 x:Name="GetBookTest"
-                Text="Get Book Test"
+                Text="Buscar"
                 Command="{Binding GetBookCommand}"
                 />
         </VerticalStackLayout>

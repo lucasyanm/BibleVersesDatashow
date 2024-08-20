@@ -1,6 +1,7 @@
 ﻿using BibleVersesDatashow.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Globalization;
 using System.Reflection;
 using System.Text.Json;
 
@@ -27,9 +28,7 @@ namespace BibleVersesDatashow.ViewModel
         }
 
         [ObservableProperty]
-        string abbrevToSearch;
-        [ObservableProperty]
-        string nameToSearch;
+        string abbrevOrNameToSearch;
         [ObservableProperty]
         BibleBook currentBook;
         //TODO: Show pop up that book was not found
@@ -39,13 +38,13 @@ namespace BibleVersesDatashow.ViewModel
         [RelayCommand]
         public async Task GetBook()
         {
-            if (String.IsNullOrEmpty(AbbrevToSearch) && String.IsNullOrEmpty(NameToSearch))
+            if (String.IsNullOrEmpty(AbbrevOrNameToSearch))
             {
-                PopUpErrorMessage = "Informe o nome ou abreviação do livro que queira obter";
+                PopUpErrorMessage = "Informe o nome ou abreviação do capítulo que queira exibir";
                 return;
             }
 
-            bool notFound = true;
+            bool bookFound = false;
 
             using (Stream fileStream = await Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync("Resources/Bible/nvi.json"))
             {
@@ -56,30 +55,42 @@ namespace BibleVersesDatashow.ViewModel
                     {
                         foreach (JsonElement jsonElement in root.EnumerateArray())
                         {
-                            if (!String.IsNullOrEmpty(NameToSearch)
-                                && jsonElement.TryGetProperty("name", out JsonElement nameProperty))
-                            {
-                                string jsonElementName = nameProperty.ToString();
-                                if (jsonElementName == NameToSearch)
-                                {
-                                    notFound = UpdateCurrentBook(jsonElement);
-                                    break;
-                                }
-                            }
-                            else if (jsonElement.TryGetProperty("abbrev", out JsonElement abbrevProperty))
+                            if (jsonElement.TryGetProperty("abbrev", out JsonElement abbrevProperty))
                             {
                                 string jsonElementAbbrev = abbrevProperty.ToString();
-                                if (jsonElementAbbrev == AbbrevToSearch)
+                                if (String.Compare
+                                        (
+                                            jsonElementAbbrev,
+                                            AbbrevOrNameToSearch,
+                                            CultureInfo.CurrentCulture,
+                                            CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase
+                                        ) == 0)
                                 {
-                                    notFound = UpdateCurrentBook(jsonElement);
+                                    bookFound = UpdateCurrentBook(jsonElement);
                                     break;
+                                }
+                                else if(jsonElement.TryGetProperty("name", out JsonElement nameProperty))
+                                {
+                                    string jsonElementName = nameProperty.ToString();
+                                    if(String.Compare
+                                        (
+                                            jsonElementName, 
+                                            AbbrevOrNameToSearch, 
+                                            CultureInfo.CurrentCulture, 
+                                            CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase
+                                        ) == 0)
+                                    {
+                                        bookFound = UpdateCurrentBook(jsonElement);
+                                        break;
+                                    }
+                                    
                                 }
                             }
                         }
                     }
                 }
             }
-            if (notFound)
+            if (!bookFound)
             {
                 PopUpErrorMessage = "Livro não encontrado";
             }
