@@ -31,6 +31,8 @@ namespace BibleVersesDatashow.ViewModel
         string abbrevOrNameToSearch;
         [ObservableProperty]
         BibleBook currentBook;
+        [ObservableProperty]
+        int? verseToStart;
         //TODO: Show pop up that book was not found
         [ObservableProperty]
         string? popUpErrorMessage;

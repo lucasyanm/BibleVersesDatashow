@@ -56,6 +56,9 @@
             <Entry
                 Placeholder="Digite o nome ou apelido do capítulo"
                 Text="{Binding AbbrevOrNameToSearch}"/>
+            <Entry
+                Placeholder="Versículo"
+                Text="{Binding VerseToStart}"/>
             <Button
                 x:Name="GetBookTest"
                 Text="Buscar"
