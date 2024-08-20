@@ -52,6 +52,15 @@
             <Label
                 Text="Font Preview"
                 Style="{StaticResource FontPreview}"/>
+
+            <Entry
+                Placeholder="Digite o apelido do livro"
+                Text="{Binding AbbrevToSearch}"/>
+            <Button
+                x:Name="GetBookTest"
+                Text="Get Book Test"
+                Command="{Binding GetBookCommand}"
+                />
         </VerticalStackLayout>
     </Grid>
 </ContentPage>
