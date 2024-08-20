@@ -26,22 +26,17 @@
             Padding="30,0"
             Spacing="25">
 
-            <Label 
-                Text="{Binding CurrentBook.name}"
+            <Label
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" 
-                FontSize="50"/>
-            <Label 
-                Text="{Binding ChapterToStart}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-                FontSize="50"/>
-
-            <Label 
-                Text="{Binding VerseToStart}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-                FontSize="40"/>
+                FontSize="50">
+                <Label.Text>
+                    <MultiBinding StringFormat="{}{0} {1}">
+                        <Binding Path="CurrentBook.name"/>
+                        <Binding Path="ChapterToStart"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
 
             <Label>
                 <Label.Text>
