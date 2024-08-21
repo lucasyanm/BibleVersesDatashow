@@ -64,7 +64,8 @@
                 <Label 
                     FlexLayout.Grow="1"
                     VerticalTextAlignment="Center"
-                    HorizontalTextAlignment="Center">
+                    HorizontalTextAlignment="Center"
+                    Margin="0 50">
                     <Label.Text>
                         <MultiBinding Converter="{converter:ChaptersVerseFromBook}">
                             <Binding Path="CurrentBook.chapters" />
