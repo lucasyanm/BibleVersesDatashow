@@ -7,6 +7,23 @@
              x:DataType="viewmodel:MainViewModel"
              xmlns:converter="clr-namespace:BibleVersesDatashow.Resources.Converter">
 
+    <FlyoutBase.ContextFlyout>
+        <MenuFlyout>
+            <MenuFlyoutItem Text="Versículo anterior"
+                    Command="{Binding PreviousVerseCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="None" Key="Left"/>
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Próximo versículo"
+        Command="{Binding NextVerseCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="None" Key="Right"/>
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+        </MenuFlyout>
+    </FlyoutBase.ContextFlyout>
+
     <ContentPage.Resources>
         <converter:ChaptersVerseFromBook x:Key="ChaptersVerseFromBook"/>
 
@@ -16,6 +33,7 @@
             <Setter Property="TextTransform" Value="Uppercase"/>
         </Style>
     </ContentPage.Resources>
+
     
     <Grid>
         <Image Source="verse_bg.jpg" 
@@ -28,7 +46,6 @@
              Opacity="0.5" 
              VerticalOptions="FillAndExpand" 
              HorizontalOptions="FillAndExpand" />
-       
 
             <FlexLayout 
                 Direction="Column"
@@ -58,7 +75,6 @@
                 </Label>
 
             </FlexLayout>
-
         
     </Grid>
     
