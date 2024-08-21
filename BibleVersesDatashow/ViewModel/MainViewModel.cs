@@ -10,11 +10,11 @@ namespace BibleVersesDatashow.ViewModel
     public partial class MainViewModel : ObservableObject
     {
         [ObservableProperty]
-        public DatashowStyle slideshowStyle;
+        public DatashowStyle datashowStyleData;
         public MainViewModel()
         {
-            SlideshowStyle = DatashowStyle.GetDatashowStyle();
-            FontSize = SlideshowStyle.FontSize;
+            DatashowStyleData = DatashowStyle.GetDatashowStyle();
+            FontSize = DatashowStyleData.FontSize;
         }
 
         [ObservableProperty]
@@ -25,7 +25,7 @@ namespace BibleVersesDatashow.ViewModel
         {
             if (FontSize <= 0) return;
 
-            SlideshowStyle.FontSize = FontSize;
+            DatashowStyleData.FontSize = FontSize;
         }
 
         [ObservableProperty]

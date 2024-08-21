@@ -12,7 +12,8 @@
 
         <Style TargetType="Label">
             <Setter Property="FontFamily" Value="RobotoBlack"/>
-            <Setter Property="FontSize" Value="{Binding SlideshowStyle.FontSize}"/>
+            <Setter Property="FontSize" Value="{Binding DatashowStyleData.FontSize}"/>
+            <Setter Property="TextTransform" Value="Uppercase"/>
         </Style>
     </ContentPage.Resources>
     
@@ -27,32 +28,38 @@
              Opacity="0.5" 
              VerticalOptions="FillAndExpand" 
              HorizontalOptions="FillAndExpand" />
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+       
 
-            <Label
-                VerticalOptions="Center" 
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding StringFormat="{}{0} {1}">
-                        <Binding Path="CurrentBook.name"/>
-                        <Binding Path="ChapterToStart"/>
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+            <FlexLayout 
+                Direction="Column"
+                AlignItems="Center">
 
-            <Label>
-                <Label.Text>
-                    <MultiBinding Converter="{converter:ChaptersVerseFromBook}">
-                        <Binding Path="CurrentBook.chapters" />
-                        <Binding Path="ChapterToStart" />
-                        <Binding Path="VerseToStart" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                <Label 
+                    HorizontalTextAlignment="Center">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="CurrentBook.name"/>
+                            <Binding Path="ChapterToStart"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                
+                <Label 
+                    FlexLayout.Grow="1"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center">
+                    <Label.Text>
+                        <MultiBinding Converter="{converter:ChaptersVerseFromBook}">
+                            <Binding Path="CurrentBook.chapters" />
+                            <Binding Path="ChapterToStart" />
+                            <Binding Path="VerseToStart" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
 
-        </VerticalStackLayout>
+            </FlexLayout>
+
+        
     </Grid>
     
 </ContentPage>
