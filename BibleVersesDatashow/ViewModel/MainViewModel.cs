@@ -33,6 +33,7 @@ namespace BibleVersesDatashow.ViewModel
         [ObservableProperty]
         BibleBook? currentBook;
         [ObservableProperty]
+        //TODO: Change name to current verse
         int? verseToStart;
         //TODO: only update on slideshow page after click on search
         [ObservableProperty]
@@ -146,6 +147,20 @@ namespace BibleVersesDatashow.ViewModel
                 Window slideshowWindow = new Window(new Slideshow(this));
                 Application.Current?.OpenWindow(slideshowWindow);
             }            
+        }
+
+        //TODO: Avançar ou voltar o livro quando chegar no final/começo
+        [RelayCommand]
+        public void PreviousVerse()
+        {
+            if(VerseToStart > 1)
+                VerseToStart--;
+        }
+        [RelayCommand]
+        public void NextVerse()
+        {
+            if (VerseToStart < CurrentBook?.chapters[ChapterToStart].Count)
+                VerseToStart++;
         }
     }
 }

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BibleVersesDatashow.MainPage"
              xmlns:viewmodel="clr-namespace:BibleVersesDatashow.ViewModel"
-             x:DataType="viewmodel:MainViewModel">
+             x:DataType="viewmodel:MainViewModel"
+             Title="Bíblia em Slide">
     <ContentPage.Resources>
         <Style 
             x:Key="FontPreview"
@@ -12,6 +13,22 @@
             <Setter Property="TextTransform" Value="Uppercase"/>
         </Style>
     </ContentPage.Resources>
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="Controle">
+            <MenuFlyoutItem Text="Versículo anterior"
+                        Command="{Binding PreviousVerseCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="None" Key="Left"/>
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Próximo versículo"
+            Command="{Binding NextVerseCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="None" Key="Right"/>
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
 
     <VerticalStackLayout
         Padding="30,0"
