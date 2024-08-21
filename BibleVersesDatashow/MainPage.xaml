@@ -5,14 +5,6 @@
              xmlns:viewmodel="clr-namespace:BibleVersesDatashow.ViewModel"
              x:DataType="viewmodel:MainViewModel"
              Title="Bíblia em Slide">
-    <ContentPage.Resources>
-        <Style 
-            x:Key="FontPreview"
-            TargetType="Label">
-            <Setter Property="FontSize" Value="{Binding FontSize}"/>
-            <Setter Property="TextTransform" Value="Uppercase"/>
-        </Style>
-    </ContentPage.Resources>
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="Controle">
             <MenuFlyoutItem Text="Versículo anterior"
@@ -42,10 +34,6 @@
             x:Name="SaveStyle"
             Text="Save"
             Command="{Binding SaveStyleCommand}"/>
-
-        <Label
-            Text="Font Preview"
-            Style="{StaticResource FontPreview}"/>
 
         <Entry
             Placeholder="Digite o nome ou apelido do livro"
