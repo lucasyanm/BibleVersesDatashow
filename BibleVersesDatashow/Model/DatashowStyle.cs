@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BibleVersesDatashow.Model
 {
-    public class DatashowStyle
+    public partial class DatashowStyle : ObservableObject
     {
         private static DatashowStyle? _savedStyle;
 
-        private DatashowStyle() { }
+        private DatashowStyle() 
+        {
+            FontSize = 60;
+        }
 
         public static DatashowStyle GetDatashowStyle()
         {
@@ -20,6 +19,7 @@ namespace BibleVersesDatashow.Model
             return _savedStyle;
         }
 
-        public int FontSize { get; set; }
+        [ObservableProperty]
+        int fontSize;
     }
 }

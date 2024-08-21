@@ -14,6 +14,7 @@ namespace BibleVersesDatashow
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Roboto-Black.ttf", "RobotoBlack");
                 });
 
             builder.Services.AddSingleton<MainPage>();

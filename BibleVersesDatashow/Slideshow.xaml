@@ -9,6 +9,11 @@
 
     <ContentPage.Resources>
         <converter:ChaptersVerseFromBook x:Key="ChaptersVerseFromBook"/>
+
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="RobotoBlack"/>
+            <Setter Property="FontSize" Value="{Binding SlideshowStyle.FontSize}"/>
+        </Style>
     </ContentPage.Resources>
     
     <Grid>
@@ -28,8 +33,7 @@
 
             <Label
                 VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-                FontSize="50">
+                HorizontalOptions="Center">
                 <Label.Text>
                     <MultiBinding StringFormat="{}{0} {1}">
                         <Binding Path="CurrentBook.name"/>

@@ -9,10 +9,12 @@ namespace BibleVersesDatashow.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        private DatashowStyle _style;
+        [ObservableProperty]
+        public DatashowStyle slideshowStyle;
         public MainViewModel()
         {
-            _style = DatashowStyle.GetDatashowStyle();
+            SlideshowStyle = DatashowStyle.GetDatashowStyle();
+            FontSize = SlideshowStyle.FontSize;
         }
 
         [ObservableProperty]
@@ -23,14 +25,13 @@ namespace BibleVersesDatashow.ViewModel
         {
             if (FontSize <= 0) return;
 
-            Console.WriteLine(FontSize);
-            _style.FontSize = FontSize;
+            SlideshowStyle.FontSize = FontSize;
         }
 
         [ObservableProperty]
-        string abbrevOrNameToSearch;
+        string? abbrevOrNameToSearch;
         [ObservableProperty]
-        BibleBook currentBook;
+        BibleBook? currentBook;
         [ObservableProperty]
         int? verseToStart;
         //TODO: only update on slideshow page after click on search

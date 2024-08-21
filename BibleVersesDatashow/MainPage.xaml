@@ -30,10 +30,6 @@
             Text="Font Preview"
             Style="{StaticResource FontPreview}"/>
 
-        <Label
-            Text="{Binding CurrentBook.name}"
-            Style="{StaticResource FontPreview}"/>
-
         <Entry
             Placeholder="Digite o nome ou apelido do livro"
             Text="{Binding AbbrevOrNameToSearch}"/>

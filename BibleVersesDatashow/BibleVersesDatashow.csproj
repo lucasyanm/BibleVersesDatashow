@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Bible\nvi.json" />
+	  <None Remove="Resources\Fonts\Roboto-Black.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
