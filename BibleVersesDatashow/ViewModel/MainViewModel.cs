@@ -22,7 +22,11 @@ namespace BibleVersesDatashow.ViewModel
         [RelayCommand]
         public void SaveStyle()
         {
-            if (FontSize <= 0) return;
+            if (FontSize <= 0)
+            {
+                FontSize = 1;
+                return;
+            }
 
             DatashowStyleData.FontSize = FontSize;
         }
@@ -175,6 +179,18 @@ namespace BibleVersesDatashow.ViewModel
                 CurrentChapter++;
                 CurrentVerse = 1;
             }
+        }
+        [RelayCommand]
+        public void IncreaseFontScale()
+        {
+            FontSize+=2;
+            SaveStyle();
+        }
+        [RelayCommand]
+        public void DecreaseFontScale()
+        {
+            FontSize-=2;
+            SaveStyle();
         }
     }
 }

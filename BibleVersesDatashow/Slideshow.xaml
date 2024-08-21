@@ -21,6 +21,20 @@
                     <KeyboardAccelerator Modifiers="None" Key="Right"/>
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
+            <MenuFlyoutItem 
+                Text="Aumentar tamanho da letra"
+                Command="{Binding IncreaseFontScaleCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="None" Key="Up"/>
+                </MenuFlyoutItem.KeyboardAccelerators>                
+            </MenuFlyoutItem>
+            <MenuFlyoutItem 
+                Text="Diminuir tamanho da letra"
+                Command="{Binding DecreaseFontScaleCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="None" Key="Down"/>
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
         </MenuFlyout>
     </FlyoutBase.ContextFlyout>
 
