@@ -5,6 +5,21 @@
              xmlns:viewmodel="clr-namespace:BibleVersesDatashow.ViewModel"
              x:DataType="viewmodel:MainViewModel"
              Title="Bíblia em Slide">
+    <ContentPage.Resources>
+        <Style x:Key="StackField" TargetType="VerticalStackLayout">
+            <Setter Property="Margin" Value="0 10 0 0"/>
+        </Style>
+
+        <Style x:Key="Flex" TargetType="FlexLayout">
+            <Setter Property="Wrap" Value="Wrap"/>
+            <Setter Property="AlignItems" Value="End"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="0 0 10 0"/>
+        </Style>
+    </ContentPage.Resources>
+    
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="Controle">
             <MenuFlyoutItem Text="Versículo anterior"
@@ -23,28 +38,51 @@
     </ContentPage.MenuBarItems>
 
     <VerticalStackLayout
-        Padding="30,0"
-        Spacing="25">
+        Padding="20">
+        <FlexLayout 
+            Style="{StaticResource Flex}">
+            <VerticalStackLayout Style="{StaticResource StackField}" FlexLayout.Grow="1">
+                <Label
+                    Text="Livro e capítulo"/>
+                <Entry
+                    Placeholder="Digite o nome ou apelido do livro"
+                    Text="{Binding AbbrevOrNameToSearch}"/>
+            </VerticalStackLayout>
 
-        <Entry 
-            Placeholder="Font size"
-            Text="{Binding FontSize}"/>
+            <VerticalStackLayout Style="{StaticResource StackField}" FlexLayout.Grow="1">
+                <Label
+                Text="Versículo"/>
+                <Entry
+                    Placeholder="Versículo"
+                    Text="{Binding VerseToStart}"/>
+            </VerticalStackLayout>
 
-        <Button
-            x:Name="SaveStyle"
-            Text="Save"
-            Command="{Binding SaveStyleCommand}"/>
+            <Button
+                x:Name="GetBookTest"
+                Text="Buscar"
+                Command="{Binding GetBookCommand}"/>
+        </FlexLayout>
 
-        <Entry
-            Placeholder="Digite o nome ou apelido do livro"
-            Text="{Binding AbbrevOrNameToSearch}"/>
-        <Entry
-            Placeholder="Versículo"
-            Text="{Binding VerseToStart}"/>
-        <Button
-            x:Name="GetBookTest"
-            Text="Buscar"
-            Command="{Binding GetBookCommand}"/>
-        
+        <Label
+            Text="Alterações visuais do slideshow"
+            Margin="20 0 0 0"
+            FontSize="20"
+            FontFamily="OpenSansSemibold"/>
+
+        <FlexLayout
+            Style="{StaticResource Flex}" Margin="20 0 0 0">
+            <VerticalStackLayout Style="{StaticResource StackField}" FlexLayout.Grow="1">
+                <Label
+                    Text="Tamanho da letra no slideshow"/>
+                <Entry 
+                    Placeholder="Font size"
+                    Text="{Binding FontSize}"/>
+            </VerticalStackLayout>
+            <Button
+                x:Name="SaveStyle"
+                Text="Alterar"
+                Command="{Binding SaveStyleCommand}"/>
+        </FlexLayout>
     </VerticalStackLayout>
+
 </ContentPage>
