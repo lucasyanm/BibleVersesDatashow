@@ -18,7 +18,7 @@ public partial class ChaptersVerseFromBook : ResourceDictionary, IMultiValueConv
             && chapter.Count >= chapterNumber
             && chapter[chapterNumber - 1].Count >= verseNumber)
         {
-            return $"{verseNumber}. " + chapter[chapterNumber - 1][verseNumber - 1];
+            return chapter[chapterNumber - 1][verseNumber - 1];
         }
 
         return string.Empty;
