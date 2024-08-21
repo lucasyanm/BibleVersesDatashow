@@ -7,7 +7,7 @@
              Title="Bíblia em Slide">
     <ContentPage.Resources>
         <Style x:Key="StackField" TargetType="VerticalStackLayout">
-            <Setter Property="Margin" Value="0 10 0 0"/>
+            <Setter Property="Margin" Value="10,0,10,0"/>
         </Style>
 
         <Style x:Key="Flex" TargetType="FlexLayout">
@@ -16,7 +16,7 @@
         </Style>
 
         <Style TargetType="Label">
-            <Setter Property="Margin" Value="0 0 10 0"/>
+            <Setter Property="Margin" Value="0,10,0,10"/>
         </Style>
     </ContentPage.Resources>
     
@@ -38,7 +38,7 @@
     </ContentPage.MenuBarItems>
 
     <VerticalStackLayout
-        Padding="20">
+        Padding="20" Margin="0,0,20,0">
         <FlexLayout 
             Style="{StaticResource Flex}">
             <VerticalStackLayout Style="{StaticResource StackField}" FlexLayout.Grow="1">
@@ -54,7 +54,7 @@
                 Text="Versículo"/>
                 <Entry
                     Placeholder="Versículo"
-                    Text="{Binding VerseToStart}"/>
+                    Text="{Binding CurrentVerse}"/>
             </VerticalStackLayout>
 
             <Button
@@ -65,12 +65,12 @@
 
         <Label
             Text="Alterações visuais do slideshow"
-            Margin="20 0 0 0"
+            Margin="0,20,0,0"
             FontSize="20"
             FontFamily="OpenSansSemibold"/>
 
         <FlexLayout
-            Style="{StaticResource Flex}" Margin="20 0 0 0">
+            Style="{StaticResource Flex}">
             <VerticalStackLayout Style="{StaticResource StackField}" FlexLayout.Grow="1">
                 <Label
                     Text="Tamanho da letra no slideshow"/>

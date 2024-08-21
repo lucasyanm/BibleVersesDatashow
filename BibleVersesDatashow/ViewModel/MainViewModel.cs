@@ -32,11 +32,10 @@ namespace BibleVersesDatashow.ViewModel
         [ObservableProperty]
         BibleBook? currentBook;
         [ObservableProperty]
-        //TODO: Change name to current verse
-        int? verseToStart;
+        int? currentVerse;
         //TODO: only update on slideshow page after click on search
         [ObservableProperty]
-        int chapterToStart;
+        int currentChapter;
         //TODO: Show pop up that book was not found
         [ObservableProperty]
         string? popUpErrorMessage;
@@ -57,11 +56,11 @@ namespace BibleVersesDatashow.ViewModel
             if(searchSplitted.Length > 1 
                 && int.TryParse(searchSplitted[1], out int chapter))
             {
-                ChapterToStart = chapter;
+                CurrentChapter = chapter;
             }
             else
             {
-                ChapterToStart = 1;
+                CurrentChapter = 1;
             }
 
             using (Stream fileStream = await Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync("Resources/Bible/nvi.json"))
@@ -110,8 +109,8 @@ namespace BibleVersesDatashow.ViewModel
             }
             if (bookFound)
             {
-                ChapterToStart = ChapterToStart > 0 && ChapterToStart <= CurrentBook.chapters.Count ? ChapterToStart : 1;
-                VerseToStart = VerseToStart > 0 && VerseToStart <= CurrentBook.chapters[ChapterToStart].Count ? VerseToStart : 1;
+                CurrentChapter = CurrentChapter > 0 && CurrentChapter <= CurrentBook.chapters.Count ? CurrentChapter : 1;
+                CurrentVerse = CurrentVerse > 0 && CurrentVerse <= CurrentBook.chapters[CurrentChapter].Count ? CurrentVerse : 1;
             }
             else
             {
@@ -152,14 +151,14 @@ namespace BibleVersesDatashow.ViewModel
         [RelayCommand]
         public void PreviousVerse()
         {
-            if(VerseToStart > 1)
-                VerseToStart--;
+            if(CurrentVerse > 1)
+                CurrentVerse--;
         }
         [RelayCommand]
         public void NextVerse()
         {
-            if (VerseToStart < CurrentBook?.chapters[ChapterToStart].Count)
-                VerseToStart++;
+            if (CurrentVerse < CurrentBook?.chapters[CurrentChapter].Count)
+                CurrentVerse++;
         }
     }
 }

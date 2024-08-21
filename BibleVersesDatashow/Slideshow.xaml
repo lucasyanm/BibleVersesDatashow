@@ -56,7 +56,7 @@
                     <Label.Text>
                         <MultiBinding StringFormat="{}{0} {1}">
                             <Binding Path="CurrentBook.name"/>
-                            <Binding Path="ChapterToStart"/>
+                            <Binding Path="CurrentChapter"/>
                         </MultiBinding>
                     </Label.Text>
                 </Label>
@@ -65,12 +65,12 @@
                     FlexLayout.Grow="1"
                     VerticalTextAlignment="Center"
                     HorizontalTextAlignment="Center"
-                    Margin="0 50">
+                    Margin="80,0">
                     <Label.Text>
                         <MultiBinding Converter="{converter:ChaptersVerseFromBook}">
                             <Binding Path="CurrentBook.chapters" />
-                            <Binding Path="ChapterToStart" />
-                            <Binding Path="VerseToStart" />
+                            <Binding Path="CurrentChapter" />
+                            <Binding Path="CurrentVerse" />
                         </MultiBinding>
                     </Label.Text>
                 </Label>
