@@ -2,19 +2,19 @@
 
 namespace BibleVersesDatashow.Model
 {
-    public partial class DatashowStyle : ObservableObject
+    public partial class SlideshowStyle : ObservableObject
     {
-        private static DatashowStyle? _savedStyle;
+        private static SlideshowStyle? _savedStyle;
 
-        private DatashowStyle() 
+        private SlideshowStyle() 
         {
             FontSize = 60;
         }
 
-        public static DatashowStyle GetDatashowStyle()
+        public static SlideshowStyle GetDatashowStyle()
         {
             if(_savedStyle == null)
-                _savedStyle = new DatashowStyle();
+                _savedStyle = new SlideshowStyle();
 
             return _savedStyle;
         }

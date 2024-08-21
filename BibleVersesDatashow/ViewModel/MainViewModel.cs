@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Globalization;
-using System.Reflection;
 using System.Text.Json;
 
 namespace BibleVersesDatashow.ViewModel
@@ -10,10 +9,10 @@ namespace BibleVersesDatashow.ViewModel
     public partial class MainViewModel : ObservableObject
     {
         [ObservableProperty]
-        public DatashowStyle datashowStyleData;
+        public SlideshowStyle datashowStyleData;
         public MainViewModel()
         {
-            DatashowStyleData = DatashowStyle.GetDatashowStyle();
+            DatashowStyleData = SlideshowStyle.GetDatashowStyle();
             FontSize = DatashowStyleData.FontSize;
         }
 
