@@ -47,12 +47,14 @@
              VerticalOptions="FillAndExpand" 
              HorizontalOptions="FillAndExpand" />
 
+        <ScrollView>
             <FlexLayout 
                 Direction="Column"
                 AlignItems="Center">
 
                 <Label 
-                    HorizontalTextAlignment="Center">
+                    HorizontalTextAlignment="Center"
+                    Margin="0,20,0,20">
                     <Label.Text>
                         <MultiBinding StringFormat="{}{0} {1}">
                             <Binding Path="CurrentBook.name"/>
@@ -76,7 +78,7 @@
                 </Label>
 
             </FlexLayout>
-        
+        </ScrollView>
     </Grid>
     
 </ContentPage>
