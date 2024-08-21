@@ -29,15 +29,21 @@ namespace BibleVersesDatashow.ViewModel
 
         [ObservableProperty]
         string? abbrevOrNameToSearch;
+
         [ObservableProperty]
         BibleBook? currentBook;
+
         [ObservableProperty]
+        /// Always start to count as 1 and goes to chapters[currentChapter].count
         int? currentVerse;
+
+        [ObservableProperty]
         //TODO: only update on slideshow page after click on search
-        [ObservableProperty]
+        /// Always start to count as 1 and goes to chapters.count
         int currentChapter;
-        //TODO: Show pop up that book was not found
+
         [ObservableProperty]
+        //TODO: Show pop up that book was not found
         string? popUpErrorMessage;
 
         [RelayCommand]
@@ -109,8 +115,8 @@ namespace BibleVersesDatashow.ViewModel
             }
             if (bookFound)
             {
-                CurrentChapter = CurrentChapter > 0 && CurrentChapter <= CurrentBook.chapters.Count ? CurrentChapter : 1;
-                CurrentVerse = CurrentVerse > 0 && CurrentVerse <= CurrentBook.chapters[CurrentChapter].Count ? CurrentVerse : 1;
+                CurrentChapter = CurrentChapter > 0 && CurrentChapter <= CurrentBook?.chapters.Count ? CurrentChapter : 1;
+                CurrentVerse = CurrentVerse > 0 && CurrentVerse <= CurrentBook?.chapters[CurrentChapter - 1].Count ? CurrentVerse : 1;
             }
             else
             {
@@ -153,12 +159,22 @@ namespace BibleVersesDatashow.ViewModel
         {
             if(CurrentVerse > 1)
                 CurrentVerse--;
+            else if(CurrentChapter > 1)
+            {
+                CurrentChapter--;
+                CurrentVerse = CurrentBook?.chapters[CurrentChapter - 1].Count;
+            }
         }
         [RelayCommand]
         public void NextVerse()
         {
-            if (CurrentVerse < CurrentBook?.chapters[CurrentChapter].Count)
+            if (CurrentVerse < CurrentBook?.chapters[CurrentChapter - 1].Count)
                 CurrentVerse++;
+            else if(CurrentChapter < CurrentBook?.chapters.Count)
+            {
+                CurrentChapter++;
+                CurrentVerse = 1;
+            }
         }
     }
 }
