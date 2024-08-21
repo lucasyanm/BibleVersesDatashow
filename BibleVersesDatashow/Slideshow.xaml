@@ -16,7 +16,7 @@
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
             <MenuFlyoutItem Text="Próximo versículo"
-        Command="{Binding NextVerseCommand}">
+                    Command="{Binding NextVerseCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="None" Key="Right"/>
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -34,51 +34,52 @@
         </Style>
     </ContentPage.Resources>
 
-    
     <Grid>
         <Image Source="verse_bg.jpg" 
-           Aspect="AspectFill" 
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Opacity="0.5"
-           BackgroundColor="#0f0f0f"/>
+               Aspect="AspectFill" 
+               VerticalOptions="FillAndExpand" 
+               HorizontalOptions="FillAndExpand"
+               Opacity="0.5"
+               BackgroundColor="#0f0f0f"/>
         <BoxView Color="Black" 
-             Opacity="0.5" 
-             VerticalOptions="FillAndExpand" 
-             HorizontalOptions="FillAndExpand" />
+                 Opacity="0.5" 
+                 VerticalOptions="FillAndExpand" 
+                 HorizontalOptions="FillAndExpand" />
 
-        <ScrollView>
-            <FlexLayout 
-                Direction="Column"
-                AlignItems="Center">
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                <Label 
-                    HorizontalTextAlignment="Center"
-                    Margin="0,20,0,20">
-                    <Label.Text>
-                        <MultiBinding StringFormat="{}{0} {1}">
-                            <Binding Path="CurrentBook.name"/>
-                            <Binding Path="CurrentChapter"/>
-                        </MultiBinding>
-                    </Label.Text>
-                </Label>
-                
-                <Label 
-                    FlexLayout.Grow="1"
-                    VerticalTextAlignment="Center"
-                    HorizontalTextAlignment="Center"
-                    Margin="80,0">
-                    <Label.Text>
-                        <MultiBinding Converter="{converter:ChaptersVerseFromBook}">
-                            <Binding Path="CurrentBook.chapters" />
-                            <Binding Path="CurrentChapter" />
-                            <Binding Path="CurrentVerse" />
-                        </MultiBinding>
-                    </Label.Text>
-                </Label>
+            <Label 
+                HorizontalTextAlignment="Center"
+                Margin="0,20,0,20"
+                Grid.Row="0">
+                <Label.Text>
+                    <MultiBinding StringFormat="{}{0} {1}">
+                        <Binding Path="CurrentBook.name"/>
+                        <Binding Path="CurrentChapter"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
 
-            </FlexLayout>
-        </ScrollView>
+            <ScrollView Grid.Row="1">
+                <VerticalStackLayout>
+                    <Label 
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Margin="80,0">
+                        <Label.Text>
+                            <MultiBinding Converter="{converter:ChaptersVerseFromBook}">
+                                <Binding Path="CurrentBook.chapters" />
+                                <Binding Path="CurrentChapter" />
+                                <Binding Path="CurrentVerse" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
     </Grid>
-    
 </ContentPage>
