@@ -80,34 +80,32 @@ namespace BibleVersesDatashow.ViewModel
                     JsonElement root = jsonDocument.RootElement;
                     if (root.ValueKind == JsonValueKind.Array)
                     {
-                        foreach (JsonElement jsonElement in root.EnumerateArray())
+                        foreach (JsonElement bookJsonElement in root.EnumerateArray())
                         {
-                            if (jsonElement.TryGetProperty("abbrev", out JsonElement abbrevProperty))
+                            if (bookJsonElement.TryGetProperty("abbrev", out JsonElement abbrevProperty))
                             {
-                                string jsonElementAbbrev = abbrevProperty.ToString();
                                 if (String.Compare
                                         (
-                                            jsonElementAbbrev,
+                                            abbrevProperty.ToString(),
                                             abbrevOrName,
                                             CultureInfo.CurrentCulture,
                                             CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase
                                         ) == 0)
                                 {
-                                    bookFound = UpdateCurrentBook(jsonElement);
+                                    bookFound = UpdateCurrentBook(bookJsonElement);
                                     break;
                                 }
-                                else if(jsonElement.TryGetProperty("name", out JsonElement nameProperty))
+                                else if(bookJsonElement.TryGetProperty("name", out JsonElement nameProperty))
                                 {
-                                    string jsonElementName = nameProperty.ToString();
                                     if(String.Compare
                                         (
-                                            jsonElementName,
+                                            nameProperty.ToString(),
                                             abbrevOrName, 
                                             CultureInfo.CurrentCulture, 
                                             CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase
                                         ) == 0)
                                     {
-                                        bookFound = UpdateCurrentBook(jsonElement);
+                                        bookFound = UpdateCurrentBook(bookJsonElement);
                                         break;
                                     }
                                     
