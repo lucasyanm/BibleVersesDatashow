@@ -66,7 +66,8 @@
                     Text="Livro e capítulo"/>
                 <Entry
                     Placeholder="Digite o nome ou apelido do livro"
-                    Text="{Binding AbbrevOrNameToSearch}"/>
+                    Text="{Binding AbbrevOrNameToSearch}"
+                    ReturnCommand="{Binding GetBookCommand}"/>
             </VerticalStackLayout>
 
             <VerticalStackLayout Style="{StaticResource StackField}" FlexLayout.Grow="1">
@@ -74,7 +75,8 @@
                 Text="Versículo"/>
                 <Entry
                     Placeholder="Versículo"
-                    Text="{Binding CurrentVerse}"/>
+                    Text="{Binding CurrentVerse}"
+                    ReturnCommand="{Binding GetBookCommand}"/>
             </VerticalStackLayout>
 
             <Button
