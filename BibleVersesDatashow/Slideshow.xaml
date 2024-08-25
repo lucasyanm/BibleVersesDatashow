@@ -45,6 +45,7 @@
             <Setter Property="FontFamily" Value="RobotoBlack"/>
             <Setter Property="FontSize" Value="{Binding DatashowStyleData.FontSize}"/>
             <Setter Property="TextTransform" Value="Uppercase"/>
+            <Setter Property="TextColor" Value="White"/>
         </Style>
     </ContentPage.Resources>
 
