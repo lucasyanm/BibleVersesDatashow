@@ -21,17 +21,37 @@
     </ContentPage.Resources>
     
     <ContentPage.MenuBarItems>
+        <!--TODO: Compartilhar os menus entre as janelas-->
         <MenuBarItem Text="Controle">
-            <MenuFlyoutItem Text="Versículo anterior"
-                        Command="{Binding PreviousVerseCommand}">
+            <MenuFlyoutItem 
+                Text="Versículo anterior"
+                Command="{Binding PreviousVerseCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="None" Key="Left"/>
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Próximo versículo"
-            Command="{Binding NextVerseCommand}">
+            
+            <MenuFlyoutItem 
+                Text="Próximo versículo"
+                Command="{Binding NextVerseCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="None" Key="Right"/>
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            
+            <MenuFlyoutItem 
+                Text="Aumentar tamanho da letra"
+                Command="{Binding IncreaseFontScaleCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="None" Key="Up"/>
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            
+            <MenuFlyoutItem 
+                Text="Diminuir tamanho da letra"
+                Command="{Binding DecreaseFontScaleCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="None" Key="Down"/>
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
         </MenuBarItem>
