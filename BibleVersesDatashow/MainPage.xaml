@@ -98,7 +98,8 @@
                     Text="Tamanho da letra no slideshow"/>
                 <Entry 
                     Placeholder="Font size"
-                    Text="{Binding FontSize}"/>
+                    Text="{Binding FontSize}"
+                    ReturnCommand="{Binding SaveStyleCommand}"/>
             </VerticalStackLayout>
             <Button
                 x:Name="SaveStyle"
