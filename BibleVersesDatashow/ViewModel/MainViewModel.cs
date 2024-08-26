@@ -62,7 +62,7 @@ namespace BibleVersesDatashow.ViewModel
             bool bookFound = false;
             string abbrevOrName = String.Empty;
 
-            string[] searchSplitted = AbbrevOrNameToSearch.Split(" ");
+            string[] searchSplitted = AbbrevOrNameToSearch.Trim().Split(" ");
 
             if(searchSplitted.Length > 1
                 && int.TryParse(searchSplitted[searchSplitted.Length - 1], out int chapter))
@@ -72,7 +72,7 @@ namespace BibleVersesDatashow.ViewModel
             }
             else
             {
-                abbrevOrName = AbbrevOrNameToSearch;
+                abbrevOrName = AbbrevOrNameToSearch.Trim();
                 CurrentChapter = 1;
             }
 
