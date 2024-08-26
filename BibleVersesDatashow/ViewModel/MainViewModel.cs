@@ -60,16 +60,19 @@ namespace BibleVersesDatashow.ViewModel
             }
 
             bool bookFound = false;
+            string abbrevOrName = String.Empty;
 
             string[] searchSplitted = AbbrevOrNameToSearch.Split(" ");
-            string abbrevOrName = searchSplitted[0];
-            if(searchSplitted.Length > 1 
-                && int.TryParse(searchSplitted[1], out int chapter))
+
+            if(searchSplitted.Length > 1
+                && int.TryParse(searchSplitted[searchSplitted.Length - 1], out int chapter))
             {
                 CurrentChapter = chapter;
+                abbrevOrName = String.Join(" ", searchSplitted, 0, searchSplitted.Length - 1);
             }
             else
             {
+                abbrevOrName = AbbrevOrNameToSearch;
                 CurrentChapter = 1;
             }
 
