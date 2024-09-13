@@ -4,6 +4,8 @@
 
 **Bible Verse Datashow** is a Windows-only .NET MAUI desktop application designed to display Bible verses in a presentation style on a separate window. The application allows users to search for Bible verses by book name, chapter, and verse, and display them on a presentation window. The user can also control the font size of the verses displayed in the presentation window, making it ideal for church services, Bible study sessions, or any scenario where Bible verses need to be presented visually to an audience. Currently, the only available language is PT-BR.
 
+Bible in JSON obtained from [Bíblia: XML + SQL + JSON](https://github.com/thiagobodruk/biblia).
+
 ## Features
 
 - **Search and Display Bible Verses:**
